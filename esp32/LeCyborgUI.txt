@@ -1,5 +1,5 @@
 #include <BluetoothSerial.h>
-"""First test for esp32 myo serial"""
+//First test for esp32 myo serial
 BluetoothSerial SerialBT;
 
 const int myoPin = 34; // Use an analog-capable GPIO pin
