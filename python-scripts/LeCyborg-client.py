@@ -43,7 +43,7 @@ def main():
                     value = int(latest_line)
                     sensor_values.append(value)
                     filtered_val = np.mean(sensor_values) if args.mean else value
-                    print(f"Sensor value: {filtered_val:.1f} > {args.threshold}")
+                    print(f"Sensor value: {filtered_val:.1f} | {args.threshold}")
 
                     # Check sensor value 
                     if filtered_val > args.threshold and not args.test:
