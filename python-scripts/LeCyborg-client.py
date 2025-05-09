@@ -37,24 +37,20 @@ def main():
             while True: 
                 latest_line = None
                 while bt_serial.in_waiting: 
-                    
                     latest_line = bt_serial.readline().decode('utf-8', errors='replace').strip()
                 
                 if latest_line and latest_line.isdigit(): 
                     value = int(latest_line)
                     sensor_values.append(value)
                     filtered_val = np.mean(sensor_values) if args.mean else value
-                  
+                    print(f"Sensor value: {filtered_val:.1f} > {args.threshold}")
+
                     # Check sensor value 
                     if filtered_val > args.threshold and not args.test:
-                        print(f"Sensor trigger: {filtered_val:.1f} > {args.threshold}")
-
                         # Get camera frames
                         images = [allcameras.get_rgb_frame(cam_id, resize=(320, 240)) for cam_id in args.camera_ids]
-
                         # Get robot state
                         state = client.control.read_joints()
-
                         # Run inference
                         actions = model({"state": np.array(state.angles_rad), "images": np.array(images)})
 
