@@ -1,3 +1,5 @@
+# sudo chmod 777 /dev/rfcomm0 
+
 import argparse
 import time
 import numpy as np
