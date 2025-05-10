@@ -1,8 +1,4 @@
 #include <BluetoothSerial.h>
-//First test for esp32 myo serial !
-//sudo chmod 777 /dev/rfcomm0
-//Client COM test:
-//sudo screen /dev/rfcomm0 115200
 
 BluetoothSerial SerialBT;
 
