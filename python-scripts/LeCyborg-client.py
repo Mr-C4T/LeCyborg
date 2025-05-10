@@ -48,8 +48,7 @@ def main():
 
     try:
         with serial.Serial(args.port, args.baudrate, timeout=0) as bt_serial:
-            print(f"✅ Connected to {args.port} at {args.baudrate} baud. 📡")
-            time.sleep(2.0)  # Allow sensors/cameras to warm up
+            print(f"📡 Listening to {args.port} at {args.baudrate} baud. ")
 
             while True:
                 latest_line = None
