@@ -1,8 +1,13 @@
 """
 1) Scan for BL devices MAC :
 hcitool scan
+
 2) Edit LeCyborg-connect.sh with esp32 mac and LeCyborg-client.py args
 nano LeCyborg-connect.sh
+sudo chmod +x LeCyborg-connect.sh
+
+3) Lunch LeCyborg-connect.sh
+bash LeCyborg-connect.sh
 
 to test activation values use --test:
 python LeCyborg-client.py --test --mean --mean-window 50 --threshold 600
