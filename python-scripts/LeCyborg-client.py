@@ -1,4 +1,4 @@
-"""
+""" Script for ACT inference control using phosphobot and esp32 with myoware sensor as a switch
 1) Scan for BL devices MAC :
 hcitool scan
 
@@ -14,7 +14,7 @@ python LeCyborg-client.py --test --mean --mean-window 50 --threshold 600
 
 Once you found values that allow you to easily start/stop you can try to controll inference :
 sudo phosphobot run --no-cameras
-python server.py --model_id MrC4t/Test-ACT-2
+python phosphobot/inference/ACT/server.py --model_id MrC4t/Test-ACT-2
 python LeCyborg-client.py --mean --camera-ids 5 6
 """
 
