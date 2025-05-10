@@ -1,3 +1,18 @@
+"""
+1) Scan for BL devices MAC :
+hcitool scan
+2) Edit LeCyborg-connect.sh with esp32 mac and LeCyborg-client.py args
+nano LeCyborg-connect.sh
+
+to test activation values use --test:
+python LeCyborg-client.py --test --mean --mean-window 50 --threshold 600
+
+Once you found values that allow you to easily start/stop you can try to controll inference :
+sudo phosphobot run --no-cameras
+python server.py --model_id MrC4t/Test-ACT-2
+python LeCyborg-client.py --mean --camera-ids 5 6
+"""
+
 import argparse
 import time
 import numpy as np
@@ -10,7 +25,7 @@ from collections import deque
 def parse_args():
     parser = argparse.ArgumentParser(description="Control ACT inference with MyoWare sensor.")
     parser.add_argument('--threshold', type=int, default=600, help="Threshold for triggering inference")
-    parser.add_argument('--camera-ids', type=int, nargs='+', default=[0, 1], help="List of camera IDs to use")
+    parser.add_argument('--camera-ids', type=int, nargs='+', default=[5, 6], help="List of camera IDs to use")
     parser.add_argument('--mean', action='store_true', help="Use mean of sensor values instead of latest")
     parser.add_argument('--mean-window', type=int, default=50, help="Window size for mean filtering")
     parser.add_argument('--port', type=str, default='/dev/rfcomm0', help="Serial port for MyoWare (e.g., COM5 or /dev/rfcomm0)")
@@ -21,7 +36,7 @@ def parse_args():
 def main():
     args = parse_args()
 
-    client = PhosphoApi(base_url="http://localhost:80")
+    client = PhosphoApi(base_url="http://localhost:8020")
     allcameras = AllCameras()
     model = ACT()
     sensor_values = deque(maxlen=args.mean_window)
