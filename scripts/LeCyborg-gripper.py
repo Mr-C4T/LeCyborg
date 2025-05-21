@@ -2,67 +2,89 @@ import argparse
 import time
 import numpy as np
 import serial
-from phosphobot.api.client import PhosphoApi
+import requests
 from collections import deque
 
+BASE_URL = "http://localhost:80"
+
 def parse_args():
-    parser = argparse.ArgumentParser(description="Control gripper using MyoWare sensor.")
-    parser.add_argument('--threshold', type=int, default=600, help="Threshold for flex detection")
-    parser.add_argument('--mean', action='store_true', help="Use mean of sensor values")
-    parser.add_argument('--mean-window', type=int, default=50, help="Size of rolling filter")
-    parser.add_argument('--port', type=str, default='/dev/rfcomm0', help="Serial port for MyoWare sensor")
-    parser.add_argument('--baudrate', type=int, default=115200, help="Serial baud rate")
-    parser.add_argument('--phospho-url', type=str, default='http://localhost:80', help="Phospho control server URL")
-    parser.add_argument('--test', action='store_true', help="Just print sensor values")
+    parser = argparse.ArgumentParser(description="Control Phosphobot gripper with MyoWare sensor.")
+    parser.add_argument('--threshold', type=int, default=600, help="Activation threshold")
+    parser.add_argument('--mean', action='store_true', help="Use moving average")
+    parser.add_argument('--mean-window', type=int, default=50, help="Moving average window size")
+    parser.add_argument('--port', type=str, default='/dev/rfcomm0', help="Serial port for ESP32")
+    parser.add_argument('--baudrate', type=int, default=115200, help="Baudrate for serial")
+    parser.add_argument('--test', action='store_true', help="Test sensor values only")
     return parser.parse_args()
+
+def move_gripper(open_val):
+    """Send move/absolute command with updated gripper open value."""
+    payload = {
+        "x": -15, "y": 0, "z": 0,
+        "rx": 0, "ry": 0, "rz": 0,
+        "open": open_val,
+        "max_trials": 10,
+        "position_tolerance": 0.03,
+        "orientation_tolerance": 0.2
+    }
+    try:
+        requests.post(f"{BASE_URL}/move/absolute", json=payload, timeout=1)
+        print(f"🦾 Gripper {'OPEN' if open_val > 0.5 else 'CLOSED'}")
+    except requests.RequestException as e:
+        print(f"❌ Gripper move failed: {e}")
 
 def main():
     args = parse_args()
 
+    # Step 1: Init robot
+    try:
+        print("🟢 Initializing robot...")
+        requests.post(f"{BASE_URL}/move/init", timeout=2).raise_for_status()
+        print("✅ Robot initialized.")
+    except requests.RequestException as e:
+        print(f"❌ Init failed: {e}")
+        return
+
+    # Step 2: Move to default position (closed)
+    move_gripper(open_val=0)
+
+    # Step 3: Read sensor
     sensor_values = deque(maxlen=args.mean_window)
-    client = PhosphoApi(base_url=args.phospho_url)
-
-    gripper_open = False  # track current state
-
     try:
         with serial.Serial(args.port, args.baudrate, timeout=0) as bt_serial:
             print(f"📡 Connected to {args.port} at {args.baudrate} baud.")
-            time.sleep(2.0)
-
-            # Move to a default position
-            print("🦾 Moving robot to default position...")
-            client.move.absolute(x=0, y=0, z=30, speed=0.5)
-            time.sleep(2)
-
-            print("✅ Ready. Flex muscle to control gripper!")
+            current_state = None  # Track current gripper state
 
             while True:
-                latest_line = None
+                line = None
                 while bt_serial.in_waiting:
-                    latest_line = bt_serial.readline().decode('utf-8', errors='replace').strip()
+                    line = bt_serial.readline().decode("utf-8", errors="replace").strip()
 
-                if latest_line and latest_line.isdigit():
-                    value = int(latest_line)
+                if line and line.isdigit():
+                    value = int(line)
                     sensor_values.append(value)
-                    filtered_val = np.mean(sensor_values) if args.mean else value
-                    print(f"Sensor value: {value} | Filtered: {filtered_val:.1f} | Threshold: {args.threshold}", end=" ")
+                    filtered = np.mean(sensor_values) if args.mean else value
 
-                    if filtered_val > args.threshold:
-                        print("🟢 Flex detected!")
+                    print(f"💪 Sensor: {value} | Filtered: {filtered:.1f} | Threshold: {args.threshold}", end=" ")
 
-                        if not args.test:
-                            gripper_open = not gripper_open
-                            grip_val = 1.0 if gripper_open else 0.0
-                            client.move.gripper(grip_val)
-                            print(f"→ Gripper {'opened' if gripper_open else 'closed'}")
-                            time.sleep(1.0)  # debounce delay
+                    if args.test:
+                        print()
+                        continue
+
+                    desired_state = 0 if filtered > args.threshold else 1  # close if > threshold
+
+                    if current_state != desired_state:
+                        move_gripper(open_val=desired_state)
+                        current_state = desired_state
                     else:
-                        print("🔴")
+                        print("⏸️ No change")
+                time.sleep(0.01)
 
     except serial.SerialException as e:
-        print(f"❌ Serial error: {e}")
+        print(f"❌ Serial connection failed: {e}")
     except KeyboardInterrupt:
-        print("👋 Exiting gracefully.")
+        print("\n👋 Exiting.")
 
 if __name__ == "__main__":
     main()
+
