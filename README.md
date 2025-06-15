@@ -1,11 +1,11 @@
-# LeCyborg
+<img src="https://github.com/Mr-C4T/LeCyborg/raw/main/image/LeCyborg_logo.png" alt="LeCyborg Logo" width="150"/>
 LeCyborg team project repository
 
 Authors : Baptiste LUBRANO LAVADERA, Erwan MARTIN
 
 <img src="image/authors.jpg" alt="Description of the image" width="200"/>
 
-We created a custom dataset using a wearable SO100 arm attached to a backpack, equipped with both a wrist camera and a context camera. Additionally, a myoelectric sensor was employed to record the muscle activity of the user, and this data was incorporated into the observation space. Our objective was to create the world's first, to the best of our knowledge, cyborg dataset.
+We created a custom dataset using a wearable SO100 arm attached to a backpack, equipped with both a wrist camera and a context camera. Additionally, a myoelectric sensor was employed to record the muscle activity of the user, and this data was incorporated into the observation space. Our objective was to create the world's first, to the best of our knowledge, LeRobot cyborg dataset and AI models.
 
 
 
