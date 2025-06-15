@@ -86,14 +86,14 @@ from lerobot.configs.policies import PreTrainedConfig
 
 from lerobot.common.teleoperators import koch_leader, so100_leader, so101_leader  # noqa: F401
 
-#additional imports
+#MODIFIED additional imports
 from lerobot.common.errors import DeviceNotConnectedError
 from typing import Any
 logger = logging.getLogger(__name__)
 
 from BioSensor import BioSensor
 
-
+#MODIFIED : vars
 BIOSENSOR_PORT = "/dev/rfcomm0" #MODIFY HERE
 BIOSENSOR_BAUDRATE = 115200 #74880
 
@@ -103,7 +103,7 @@ biosensor = BioSensor(BIOSENSOR_PORT, baudrate=BIOSENSOR_BAUDRATE)
 
 
 
-#Redefine the observation method of so101
+#MODIFIED Redefine the observation method of robot
 def add_data_to_observation(observation, biosensor) -> dict[str, Any]:
         sensor_data_value = biosensor.get_last_value()
         sensor_data = np.array(sensor_data_value, dtype=np.float32)  
@@ -211,6 +211,7 @@ def record_loop(
             events["exit_early"] = False
             break
 
+        #MODIFIED Radding add_data_to_observation function to augment the observation of the robot.
         observation = robot.get_observation()
         observation = add_data_to_observation(observation, biosensor=biosensor) #function implementation
 
@@ -272,6 +273,7 @@ def record(cfg: RecordConfig) -> LeRobotDataset:
     robot = make_robot_from_config(cfg.robot)
     teleop = make_teleoperator_from_config(cfg.teleop) if cfg.teleop is not None else None
 
+    #MODIFIED SENSOR START
     biosensor.connect()
     time.sleep(1)
     biosensor.start()
@@ -282,7 +284,7 @@ def record(cfg: RecordConfig) -> LeRobotDataset:
     action_features = hw_to_dataset_features(robot.action_features, "action", cfg.dataset.video)
     obs_features = hw_to_dataset_features(robot.observation_features, "observation", cfg.dataset.video)
 
-    #AJOUT DE LA FEATURE SENSOR
+    #MODIFIED SENSOR FEATURE INCLUSION
     sensor_feature = {'observation.sensor': {
             'dtype': 'float32', 
             'shape': (1,), 
@@ -385,4 +387,7 @@ def record(cfg: RecordConfig) -> LeRobotDataset:
 
 
 if __name__ == "__main__":
-    record()
+    try:
+        record()
+    except KeyboardInterrupt as e: #MODIFIED thread deconexion on ctrl + c
+            biosensor.disconnect()
