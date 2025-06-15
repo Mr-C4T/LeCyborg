@@ -1,6 +1,106 @@
 # LeCyborg
 LeCyborg team project repository
 
-![LeCyborg Wearable Robot](image/LeCyborg-wearableRobot.png)
+Authors : Baptiste LUBRANO LAVADERA, Erwan MARTIN
+
+<img src="image/authors.jpg" alt="Description of the image" width="200"/>
+
+We created a custom dataset using a wearable SO100 arm attached to a backpack, equipped with both a wrist camera and a context camera. Additionally, a myoelectric sensor was employed to record the muscle activity of the user, and this data was incorporated into the observation space. Our objective was to create the world's first, to the best of our knowledge, cyborg dataset.
+
+
+
+# Requirements
+LeCyborg is working on top of lerobot (https://github.com/huggingface/lerobot), thus, you need it installed properly in a proper environment (the best would be to be familiar with the full lerobot dataset record and training process).
+
+INFO : This project has been made on machines running ubuntu 22 and 24 operating system.
+
+# Getting Started
+```bash
+git clone https://github.com/Mr-C4T/LeCyborg.git \
+cd LeCyborg
+```
+Make sure your lerobot environment is activated.
+
+## Sensor usage
+### ESP32 Flashing
+With your ESP 32, use .ino the code placed in the **esp32/LeCyborg-esp32** folder.
+
+You can do it with the arduino software (https://www.arduino.cc/en/software/).
+You will also need to install the BluetoothSerial Library which can be easily found on the library manager of the arduino IDE.
+![BluetoothSerial Library](image/btserial_lib.png)
+
+### Connecting and getting data from the sensor in python
+First, Turn on your Scan for Bluetooth MAC address of your ESP32:
+```bash
+hcitool scan
+```
+Then, when you fint the MAC address of you bluetooth ESP device in the shape XX:XX:XX:XX:XX:XX, copy it.
+
+we can now open our bash file : 
+```bash
+nano LeCyborg-connect.sh 
+```
+edit the existing mac address by removing the existing one and pasting the one you copied above in the guide.
+you can now save and exit from the file by doing **CTRL+O->ENTER->CTRL+X**
+
+just to be sure, add the execution rights to the file and run it:
+```bash
+sudo chmod +x LeCyborg-connect.sh
+./LeCyborg-connect.sh
+```
+Note that you'll have to run **LeCyborg-connect.sh** every time you open a terminal where you want to use the sensor.
+
+Then, we are ready to run the python test script:
+```bash
+python LeCyborg/test_biosensor_print.py
+```
+
+you should see similar outputs as in the image below:
+![sensor output screenshot](image/screen_bt_serial.png)
+You are now ready to record a dataset with your new sensor!!
+
+
+## record
+We've made a custom script : **LeCyborg/custom_record.py** which is a modified version of the record script from lerobot. We modified the record loop in order to integrate our sensor data.
+
+you can modify those variables after the program imports :
+```python
+BIOSENSOR_PORT = "/dev/rfcomm0" #MODIFY HERE
+BIOSENSOR_BAUDRATE = 115200 #74880
+
+warmup_time = 35
+```
+
+please note that the warmup time variable corresponds to a waiting time for the global recording to begin (not for every loop iteration) made because of a sensor bug in the 30 first seconds after connexion.
+
+Here is a command you can adapt to run a record with your dataset:
+```bash
+cd LeCyborg
+```
+```bash
+python custom_record.py     --robot.type=so100_follower     --robot.port=/dev/ttyACM1     --robot.id=so100_follower     --robot.cameras="{ wrist: {type: opencv, index_or_path: /dev/video8, width: 640, height: 480, fps: 25}, context: {type: intelrealsense, serial_number_or_name: 134322073085, width: 640, height: 480, fps: 15}}"     --teleop.type=so100_leader   --teleop.port=/dev/ttyACM0 --teleop.id=so100_leader   --display_data=false     --dataset.repo_id=USER/record-test     --dataset.num_episodes=2     --dataset.single_task="test the dataset recording"     --dataset.push_to_hub=False
+```
+You can see that the parameters are the same that for lerobot script, adapt every parameter to your case.
+As in lerobot, think about giving rights to the serial ports for the robots
+
+## Visualize dataset
+once you have it, you can visualize normally your dataset using the scripts directly from lerobot.
+
+```bash
+python PATH_TO_lerobot/lerobot/scripts/visualize_dataset_html.py --repo-id=USER/record-test
+```
+
+You can view with that script your dataset in a web brower:
+
+![Dataset View](image/dataset_view.png)
+You can see our additional data labeled as **observation.sensor**
+
+
+## Train
+Same as for view, we can use the directly lerobot script for training our super dataset:
+```bash
+python lerobot/scripts/train.py   --dataset.repo_id=MrC4T/record_real2   --policy.type=act   --output_dir=outputs/train/LeCyborg_act --job_name=LeCyborg_act   --policy.device=cuda   --wandb.enable=false
+```
+
 
 > 🦾 *Wearable SO100/SO101 robotic arm mounted on a backpack using 3D-printed adapters and controlled via EMG sensor.*

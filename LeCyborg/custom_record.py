@@ -95,9 +95,12 @@ from BioSensor import BioSensor
 
 BIOSENSOR_PORT = "/dev/rfcomm0" #MODIFY HERE
 BIOSENSOR_BAUDRATE = 115200 #74880
-biosensor = BioSensor(BIOSENSOR_PORT, baudrate=BIOSENSOR_BAUDRATE)
 
 warmup_time = 35
+
+biosensor = BioSensor(BIOSENSOR_PORT, baudrate=BIOSENSOR_BAUDRATE)
+
+
 
 #Redefine the observation method of so101
 def add_data_to_observation(observation, biosensor) -> dict[str, Any]:
