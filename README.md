@@ -102,5 +102,3 @@ Same as for view, we can use the directly lerobot script for training our super 
 python lerobot/scripts/train.py   --dataset.repo_id=MrC4T/record_real2   --policy.type=act   --output_dir=outputs/train/LeCyborg_act --job_name=LeCyborg_act   --policy.device=cuda   --wandb.enable=false
 ```
 
-
-> 🦾 *Wearable SO100/SO101 robotic arm mounted on a backpack using 3D-printed adapters and controlled via EMG sensor.*
