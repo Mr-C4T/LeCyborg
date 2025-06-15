@@ -83,6 +83,8 @@ python custom_record.py     --robot.type=so100_follower     --robot.port=/dev/tt
 You can see that the parameters are the same that for lerobot script, adapt every parameter to your case.
 As in lerobot, think about giving rights to the serial ports for the robots
 
+If you want to see what we changed in the record loop in order to add sensor data, you can CTRL+F and look for comments containing "MODIFIED" in `LeCyborg/custom_record.py`
+
 LeCyborg dataset: [LeRobot-worldwide-hackathon/7-LeCyborg-so100_emg_sensor](https://huggingface.co/datasets/LeRobot-worldwide-hackathon/7-LeCyborg-so100_emg_sensor)
 
 ## Visualize dataset
