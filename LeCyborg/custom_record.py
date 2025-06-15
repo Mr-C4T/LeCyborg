@@ -93,9 +93,11 @@ logger = logging.getLogger(__name__)
 from BioSensor import BioSensor
 
 
-BIOSENSOR_PORT = "/dev/ttyUSB0" #MODIFY HERE
-biosensor = BioSensor(BIOSENSOR_PORT)
+BIOSENSOR_PORT = "/dev/rfcomm0" #MODIFY HERE
+BIOSENSOR_BAUDRATE = 115200 #74880
+biosensor = BioSensor(BIOSENSOR_PORT, baudrate=BIOSENSOR_BAUDRATE)
 
+warmup_time = 35
 
 #Redefine the observation method of so101
 def add_data_to_observation(observation, biosensor) -> dict[str, Any]:
@@ -259,9 +261,11 @@ def record(cfg: RecordConfig) -> LeRobotDataset:
 
     
     biosensor.connect()
-    time.sleep(1/30)
+    time.sleep(1)
     biosensor.start()
-
+    print("beginning warmup...")
+    time.sleep(warmup_time)
+    print("warmup done !")
     action_features = hw_to_dataset_features(robot.action_features, "action", cfg.dataset.video)
     obs_features = hw_to_dataset_features(robot.observation_features, "observation", cfg.dataset.video)
 

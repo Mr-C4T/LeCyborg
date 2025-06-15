@@ -1,7 +1,7 @@
 import serial
 import time
 
-BLUETOOTH_PORT = 'COM8'  # Change this if needed (win=COM5)
+BLUETOOTH_PORT = '/dev/rfcomm0'  # Change this if needed (win=COM5)
 BAUD_RATE = 115200
 
 try:

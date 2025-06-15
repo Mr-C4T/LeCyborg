@@ -30,7 +30,9 @@ class BioSensor(threading.Thread):
 
     def run(self):
         while self.connected:
-            self.last_value = self.read()
+            data = self.read()
+            if data:
+                self.last_value = data
             time.sleep(1 / 30)  # ~33ms delay for ~30Hz loop
 
             if self.disconnect_request.is_set():
