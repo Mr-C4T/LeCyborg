@@ -83,6 +83,8 @@ python custom_record.py     --robot.type=so100_follower     --robot.port=/dev/tt
 You can see that the parameters are the same that for lerobot script, adapt every parameter to your case.
 As in lerobot, think about giving rights to the serial ports for the robots
 
+LeCyborg dataset: [MrC4t/7-LeCyborg-so100_emg_sensor](https://huggingface.co/datasets/MrC4t/7-LeCyborg-so100_emg_sensor)
+
 ## Visualize dataset
 once you have it, you can visualize normally your dataset using the scripts directly from lerobot.
 
@@ -102,3 +104,11 @@ Same as for view, we can use the directly lerobot script for training our super 
 python lerobot/scripts/train.py   --dataset.repo_id=MrC4T/record_real2   --policy.type=act   --output_dir=outputs/train/LeCyborg_act --job_name=LeCyborg_act   --policy.device=cuda   --wandb.enable=false
 ```
 
+Our trained model: [MrC4t/LeCyborg_act](https://huggingface.co/MrC4t/LeCyborg_act)
+
+## Inference
+To lunch the LeCyborg AI model inference
+```bash
+python custom_record.py     --robot.type=so100_follower     --robot.port=/dev/ttyACM0     --robot.id=so100_follower     --robot.cameras="{ wrist: {type: opencv, index_or_path: /dev/video6, width: 640, height: 480, fps: 25}, context: {type: intelrealsense, serial_number_or_name: 134322073085, width: 640, height: 480, fps: 15}}"     --display_data=false    --dataset.single_task="put the cube in the box"     --dataset.push_to_hub=False --dataset.repo_id=MrC4t/eval_LeCyborg   --policy.path=MrC4t/LeCyborg_act --dataset.episode_time_s=300
+
+```
