@@ -23,7 +23,7 @@ Make sure your lerobot environment is activated.
 
 ## Sensor usage
 ### ESP32 Flashing
-With your ESP 32, use .ino the code placed in the **esp32/LeCyborg-esp32** folder.
+With your ESP 32, use the .ino code placed in the **esp32/LeCyborg-esp32** folder.
 
 You can do it with the arduino software (https://www.arduino.cc/en/software/).
 You will also need to install the BluetoothSerial Library which can be easily found on the library manager of the arduino IDE.
@@ -34,13 +34,13 @@ First, Turn on your Scan for Bluetooth MAC address of your ESP32:
 ```bash
 hcitool scan
 ```
-Then, when you fint the MAC address of you bluetooth ESP device in the shape XX:XX:XX:XX:XX:XX, copy it.
+Then, when you find the MAC address of you bluetooth ESP device in the shape XX:XX:XX:XX:XX:XX, copy it.
 
 we can now open our bash file : 
 ```bash
 nano LeCyborg-connect.sh 
 ```
-edit the existing mac address by removing the existing one and pasting the one you copied above in the guide.
+edit the mac address by removing the existing one and pasting the one you copied above in the guide.
 you can now save and exit from the file by doing **CTRL+O->ENTER->CTRL+X**
 
 just to be sure, add the execution rights to the file and run it:
@@ -78,7 +78,7 @@ Here is a command you can adapt to run a record with your dataset:
 cd LeCyborg
 ```
 ```bash
-python custom_record.py     --robot.type=so100_follower     --robot.port=/dev/ttyACM1     --robot.id=so100_follower     --robot.cameras="{ wrist: {type: opencv, index_or_path: /dev/video8, width: 640, height: 480, fps: 25}, context: {type: intelrealsense, serial_number_or_name: 134322073085, width: 640, height: 480, fps: 15}}"     --teleop.type=so100_leader   --teleop.port=/dev/ttyACM0 --teleop.id=so100_leader   --display_data=false     --dataset.repo_id=USER/record-test     --dataset.num_episodes=2     --dataset.single_task="test the dataset recording"     --dataset.push_to_hub=False
+python custom_record.py     --robot.type=so100_follower     --robot.port=/dev/ttyACM1     --robot.id=so100_follower     --robot.cameras="{ wrist: {type: opencv, index_or_path: /dev/video8, width: 640, height: 480, fps: 25}, context: {type: intelrealsense, serial_number_or_name: 134322073085, width: 640, height: 480, fps: 15}}"     --teleop.type=so100_leader   --teleop.port=/dev/ttyACM0 --teleop.id=so100_leader   --display_data=false     --dataset.repo_id=USER/record-test     --dataset.num_episodes=20     --dataset.single_task="test the dataset recording"     --dataset.push_to_hub=False
 ```
 You can see that the parameters are the same that for lerobot script, adapt every parameter to your case.
 As in lerobot, think about giving rights to the serial ports for the robots
@@ -88,7 +88,7 @@ If you want to see what we changed in the record loop in order to add sensor dat
 LeCyborg dataset: [LeRobot-worldwide-hackathon/7-LeCyborg-so100_emg_sensor](https://huggingface.co/datasets/LeRobot-worldwide-hackathon/7-LeCyborg-so100_emg_sensor)
 
 ## Visualize dataset
-once you have it, you can visualize normally your dataset using the scripts directly from lerobot.
+once you have it, you can visualize your dataset using the scripts directly from lerobot.
 
 ```bash
 python PATH_TO_lerobot/lerobot/scripts/visualize_dataset_html.py --repo-id=USER/record-test
@@ -101,15 +101,15 @@ You can see our additional data labeled as **observation.sensor**
 
 
 ## Train
-Same as for view, we can use the directly lerobot script for training our super dataset:
+Same as for view, you can use the official lerobot training script to train your policy:
 ```bash
-python lerobot/scripts/train.py   --dataset.repo_id=MrC4T/record_real2   --policy.type=act   --output_dir=outputs/train/LeCyborg_act --job_name=LeCyborg_act   --policy.device=cuda   --wandb.enable=false
+python lerobot/scripts/train.py   --dataset.repo_id=MrC4T/LeCyborg_act   --policy.type=act   --output_dir=outputs/train/LeCyborg_act --job_name=LeCyborg_act   --policy.device=cuda   --wandb.enable=false
 ```
 
 Our trained model: [MrC4t/LeCyborg_act](https://huggingface.co/MrC4t/LeCyborg_act)
 
 ## Inference
-To lunch the LeCyborg AI model inference
+To lunch the LeCyborg_act model inference:
 ```bash
 python custom_record.py     --robot.type=so100_follower     --robot.port=/dev/ttyACM0     --robot.id=so100_follower     --robot.cameras="{ wrist: {type: opencv, index_or_path: /dev/video6, width: 640, height: 480, fps: 25}, context: {type: intelrealsense, serial_number_or_name: 134322073085, width: 640, height: 480, fps: 15}}"     --display_data=false    --dataset.single_task="put the cube in the box"     --dataset.push_to_hub=False --dataset.repo_id=MrC4t/eval_LeCyborg   --policy.path=MrC4t/LeCyborg_act --dataset.episode_time_s=300
 
