@@ -23,24 +23,27 @@ Make sure your lerobot environment is activated.
 
 ## Sensor usage
 ### ESP32 Flashing
-With your ESP 32, use the .ino code placed in the **esp32/LeCyborg-esp32** folder.
+With your ESP32, use the **LeCyborg-esp32.ino** code placed in the **esp32/** folder.
 
-You can do it with the arduino software (https://www.arduino.cc/en/software/).
+You can flash it with the arduino software (https://www.arduino.cc/en/software/).
 You will also need to install the BluetoothSerial Library which can be easily found on the library manager of the arduino IDE.
+
 ![BluetoothSerial Library](image/btserial_lib.png)
 
 ### Connecting and getting data from the sensor in python
-First, Turn on your Scan for Bluetooth MAC address of your ESP32:
+First, Turn on your Bluetooth and scan to find the MAC address of your ESP32:
 ```bash
 hcitool scan
 ```
 Then, when you find the MAC address of you bluetooth ESP device in the shape XX:XX:XX:XX:XX:XX, copy it.
 
+The sensor should appear has **"🤗 LeCyborg-EMG 🦾"**
+
 we can now open our bash file : 
 ```bash
 nano LeCyborg-connect.sh 
 ```
-edit the mac address by removing the existing one and pasting the one you copied above in the guide.
+edit the mac address by removing the existing one and pasting the one you copied above.
 you can now save and exit from the file by doing **CTRL+O->ENTER->CTRL+X**
 
 just to be sure, add the execution rights to the file and run it:
@@ -73,7 +76,7 @@ warmup_time = 35
 
 please note that the warmup time variable corresponds to a waiting time for the global recording to begin (not for every loop iteration) made because of a sensor bug in the 30 first seconds after connexion.
 
-Here is a command you can adapt to run a record with your dataset:
+Here is a command you can adapt to start your dataset recording:
 ```bash
 cd LeCyborg
 ```
@@ -94,14 +97,14 @@ once you have it, you can visualize your dataset using the scripts directly from
 python PATH_TO_lerobot/lerobot/scripts/visualize_dataset_html.py --repo-id=USER/record-test
 ```
 
-You can view with that script your dataset in a web brower:
+With that script you can view your dataset in your web brower:
 
 ![Dataset View](image/dataset_view.png)
-You can see our additional data labeled as **observation.sensor**
+You can see our additional emg data labeled as **observation.sensor**
 
 
 ## Train
-Same as for view, you can use the official lerobot training script to train your policy:
+Same as for view, you can use the official lerobot training script to train your policy (we used ACT):
 ```bash
 python lerobot/scripts/train.py   --dataset.repo_id=MrC4T/LeCyborg_act   --policy.type=act   --output_dir=outputs/train/LeCyborg_act --job_name=LeCyborg_act   --policy.device=cuda   --wandb.enable=false
 ```
