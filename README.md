@@ -25,7 +25,7 @@ Make sure your lerobot environment is activated.
 
 ## Sensor usage
 ### ESP32 Flashing
-With your ESP32, use the **LeCyborg-esp32.ino** code placed in the **esp32/** folder.
+With your ESP32, use the `LeCyborg-esp32.ino` code placed in the **esp32/** folder.
 
 You can flash it with the arduino software (https://www.arduino.cc/en/software/).
 You will also need to install the BluetoothSerial Library which can be easily found on the library manager of the arduino IDE.
@@ -104,6 +104,7 @@ With that script you can view your dataset in your web brower:
 ![Dataset View](image/dataset_view.png)
 You can see our additional emg data labeled as **observation.sensor**
 
+Alternatively, you can view your dataset online here: [lerobot-visualize-dataset.hf.space](https://lerobot-visualize-dataset.hf.space/LeRobot-worldwide-hackathon/7-LeCyborg-so100_emg_sensor/episode_0)
 
 ## Train
 Same as for view, you can use the official lerobot training script to train your policy (we used ACT):
