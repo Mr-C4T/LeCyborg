@@ -3,9 +3,11 @@ LeCyborg team project repository
 
 Authors : Baptiste LUBRANO LAVADERA, Erwan MARTIN
 
-<img src="image/authors.jpg" alt="Description of the image" width="200"/>
+<img src="image/authors.jpg" alt="Description of the image" width="350"/>
 
-We created a custom dataset using a wearable SO100 arm attached to a backpack, equipped with both a wrist camera and a context camera. Additionally, a MyoWare emg sensor was employed to record the muscle activity of the user, and this data was incorporated into the observation space of the robot. Our objective was to create the world's first, to the best of our knowledge, LeRobot cyborg dataset and AI models.
+We created a custom dataset using a wearable SO100 arm attached to a backpack, equipped with both a wrist camera and a context camera. Additionally, a MyoWare emg sensor was employed to record the muscle activity of the user, and this data was incorporated into the observation space of the robot. 
+
+Our objective was to create the world's first, to the best of our knowledge, LeRobot Cyborg dataset and AI policy to control a third arm 🦾.
 
 
 
@@ -37,7 +39,7 @@ hcitool scan
 ```
 Then, when you find the MAC address of you bluetooth ESP device in the shape XX:XX:XX:XX:XX:XX, copy it.
 
-The sensor should appear has **"🤗 LeCyborg-EMG 🦾"**
+The sensor should appear as **"🤗 LeCyborg-EMG 🦾"**
 
 we can now open our bash file : 
 ```bash
@@ -63,7 +65,7 @@ you should see similar outputs as in the image below:
 You are now ready to record a dataset with your new sensor!!
 
 
-## record
+## Record
 We've made a custom script : **LeCyborg/custom_record.py** which is a modified version of the record script from lerobot. We modified the record loop in order to integrate our sensor data.
 
 you can modify those variables after the program imports :
