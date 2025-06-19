@@ -24,6 +24,9 @@ cd LeCyborg
 Make sure your lerobot environment is activated.
 
 ## Sensor usage
+
+![BluetoothSerial Library](image/myoware_LeCyborg.jpg)
+
 ### ESP32 Flashing
 With your ESP32, use the `LeCyborg-esp32.ino` code placed in the **esp32/** folder.
 
