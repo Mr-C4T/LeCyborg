@@ -1,15 +1,25 @@
 <img src="https://github.com/Mr-C4T/LeCyborg/raw/main/image/LeCyborg_logo.png" alt="LeCyborg Logo" width="150"/>
-LeCyborg team project repository
 
-Authors : Baptiste LUBRANO LAVADERA, Erwan MARTIN
+AI-powered third-arm prosthesis using an EMG sensor and imitation learning policy (ACT) 
 
-<img src="image/authors.jpg" alt="Description of the image" width="350"/>
+Built for the  LeRobot Worldwide Hackathon 2025 by Hugging Face (🏆 13ᵗʰ place out of the 30 winning projects).
 
-We created a custom dataset using a wearable SO100 arm attached to a backpack, equipped with both a wrist camera and a context camera. Additionally, a MyoWare emg sensor was employed to record the muscle activity of the user, and this data was incorporated into the observation space of the robot. 
+**Authors:** Baptiste LUBRANO LAVADERA, Erwan MARTIN
 
-Our objective was to create the world's first, to the best of our knowledge, LeRobot Cyborg dataset and AI policy to control a third arm 🦾.
+<table>
+  <tr>
+    <td><img src="image/authors.jpg" alt="LeCyborg team" width="350"/></td>
+    <td>
+      <a href="https://www.youtube.com/watch?v=QdlEGFZBbcE">
+        <img src="image/demo.png" alt="Watch the demo video" width="350"/>
+      </a>
+    </td>
+  </tr>
+</table>
 
+We created a custom dataset using a wearable SO100 arm attached to a backpack, equipped with both a wrist camera and a context camera. Additionally, a MyoWare EMG sensor was employed to record the muscle activity of the user, and this data was incorporated into the observation space of the robot.
 
+Our objective was to create the world's first — to the best of our knowledge — LeRobot Cyborg dataset and AI policy to control a third arm 🦾.
 
 # Requirements
 LeCyborg is working on top of lerobot (https://github.com/huggingface/lerobot), thus, you need it installed properly in a proper environment (the best would be to be familiar with the full lerobot dataset record and training process).
