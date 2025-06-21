@@ -8,14 +8,14 @@ Built for the  LeRobot Worldwide Hackathon 2025 by Hugging Face (🏆 13ᵗʰ pl
 
 <table>
   <tr>
-    <td><img src="image/authors.jpg" alt="LeCyborg team" width="350"/></td>
+    <td><img src="image/authors.jpg" alt="LeCyborg team" width="300"/></td>
     <td>
-      <a href="https://www.youtube.com/watch?v=QdlEGFZBbcE">
-        <img src="image/demo.png" alt="Watch the demo video" width="350"/>
-      </a>
+      <img src="image/demo.png" alt="Watch the demo video" width="350"/><br/>
+      🎥 <a href="https://www.youtube.com/watch?v=QdlEGFZBbcE">Watch the demo video</a>
     </td>
   </tr>
 </table>
+
 
 We created a custom dataset using a wearable SO100 arm attached to a backpack, equipped with both a wrist camera and a context camera. Additionally, a MyoWare EMG sensor was employed to record the muscle activity of the user, and this data was incorporated into the observation space of the robot.
 
