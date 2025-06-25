@@ -10,7 +10,7 @@ Built for the  LeRobot Worldwide Hackathon 2025 by Hugging Face (🏆 13ᵗʰ pl
   <tr>
     <td><img src="image/authors.jpg" alt="LeCyborg team" width="300"/></td>
     <td>
-      <img src="image/demo.png" alt="Watch the demo video" width="350"/><br/>
+      <img src="image/lecyborg.gif" alt="Watch the demo video" width="350"/><br/>
       🎥 <a href="https://www.youtube.com/watch?v=QdlEGFZBbcE">Watch the demo video</a>
     </td>
   </tr>
