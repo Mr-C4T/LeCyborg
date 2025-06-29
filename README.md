@@ -118,7 +118,7 @@ Alternatively, you can view your dataset online here: [lerobot-visualize-dataset
 ## Train
 Same as for view, you can use the official lerobot training script to train your policy (we used ACT):
 ```bash
-python lerobot/scripts/train.py   --dataset.repo_id=MrC4T/7-LeCyborg-so100_emg_sensor   --policy.type=act   --output_dir=outputs/train/LeCyborg_act --job_name=LeCyborg_act   --policy.device=cuda   --wandb.enable=false
+python lerobot/scripts/train.py   --dataset.repo_id=MrC4t/7-LeCyborg-so100_emg_sensor   --policy.type=act   --output_dir=outputs/train/LeCyborg_act --job_name=LeCyborg_act   --policy.device=cuda   --wandb.enable=false
 ```
 
 Our trained model: [MrC4t/LeCyborg_act](https://huggingface.co/MrC4t/LeCyborg_act)
