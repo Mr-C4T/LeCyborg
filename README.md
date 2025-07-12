@@ -131,5 +131,8 @@ python custom_record.py     --robot.type=so100_follower     --robot.port=/dev/tt
 ```
 
 ## Interpretability 
-🚧 Work in progress 🚧
-https://github.com/Mr-C4T/physical-AI-interpretability
+**🚧 Work in progress 🚧
+Visual attention mapping + EMG sensor attention graph.
+https://github.com/Mr-C4T/physical-AI-interpretability**
+
+
