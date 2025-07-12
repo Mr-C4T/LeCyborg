@@ -15,7 +15,7 @@ We created a custom dataset using a wearable SO100 arm attached to a backpack, e
 
 Our objective was to create the world's first — to the best of our knowledge — LeRobot Cyborg 🦾 dataset and AI policy to control a third arm.
 
-🎥 <a href="https://www.youtube.com/watch?v=QdlEGFZBbcE">Watch the demo video</a>  
+### 🎥 <a href="https://www.youtube.com/watch?v=QdlEGFZBbcE">Watch the demo video</a> 🎥 
 
 # Requirements
 LeCyborg is working on top of lerobot (https://github.com/huggingface/lerobot), thus, you need it installed properly in a proper environment (the best would be to be familiar with the full lerobot dataset record and training process).
@@ -129,3 +129,7 @@ To lunch the LeCyborg_act model inference:
 python custom_record.py     --robot.type=so100_follower     --robot.port=/dev/ttyACM0     --robot.id=so100_follower     --robot.cameras="{ wrist: {type: opencv, index_or_path: /dev/video6, width: 640, height: 480, fps: 25}, context: {type: intelrealsense, serial_number_or_name: 134322073085, width: 640, height: 480, fps: 15}}"     --display_data=false    --dataset.single_task="put the cube in the box"     --dataset.push_to_hub=False --dataset.repo_id=MrC4t/eval_LeCyborg   --policy.path=MrC4t/LeCyborg_act --dataset.episode_time_s=300
 
 ```
+
+## Interpretability 
+🚧 Work in progress 🚧
+https://github.com/Mr-C4T/physical-AI-interpretability
