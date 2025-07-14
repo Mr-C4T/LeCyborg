@@ -136,8 +136,15 @@ python custom_record.py     --robot.type=so100_follower     --robot.port=/dev/tt
 ```
 
 ## Interpretability 
-**🚧 Work in progress 🚧
+
 Visual attention mapping + EMG sensor attention graph.
-https://github.com/Mr-C4T/physical-AI-interpretability**
+https://github.com/Mr-C4T/physical-AI-interpretability
+
+![visual att map](image/visual_attention_map.gif)
+
+## ⭐ Star History
+If you like the project, consider giving it a star!
+
+<img src="https://api.star-history.com/svg?repos=Mr-C4T/LeCyborg&type=Date" alt="Star History Chart" width="60%" />
 
 
