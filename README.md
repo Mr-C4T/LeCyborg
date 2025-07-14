@@ -73,6 +73,11 @@ you should see similar outputs as in the image below:
 ![sensor output screenshot](image/screen_bt_serial.png)
 You are now ready to record a dataset with your new sensor!!
 
+## Contextual Activation
+
+To teach the AI policy when to activate the third arm, we contracted the muscle only when assistance was actually needed during recording. This made the EMG signal a clear indicator of intent, enabling the model to learn context-aware activation, rather than relying on fixed thresholds like traditional myoelectric prostheses.
+
+The teleoperator was instructed to activate the robot only when the cyborg’s muscle was contracted, and return it to a rest position when the muscle was relaxed.
 
 ## Record
 We've made a custom script : **LeCyborg/custom_record.py** which is a modified version of the record script from lerobot. We modified the record loop in order to integrate our sensor data.
