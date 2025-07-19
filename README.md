@@ -7,8 +7,8 @@ Built for the  LeRobot Worldwide Hackathon 2025 by Hugging Face (🏆 13ᵗʰ pl
 **Authors:** Baptiste LUBRANO LAVADERA, Erwan MARTIN
 
 <p align="left">
-  <img src="image/lecyborg.gif" alt="Watch the demo video" width="450"/>
-  <img src="image/authors.jpg" alt="LeCyborg team" width="250"/>
+  <img src="image/lecyborg.gif" alt="Watch the demo video" width="60%"/>
+  <img src="image/authors.jpg" alt="LeCyborg team" width="34%"/>
 </p>
 
 We created a custom dataset using a wearable SO100 arm attached to a backpack, equipped with both a wrist camera and a context camera. Additionally, a MyoWare EMG sensor was employed to record the muscle activity of the user, and this data was incorporated into the observation space of the robot.
@@ -30,8 +30,10 @@ cd LeCyborg
 Make sure your lerobot environment is activated.
 
 ## Sensor usage
-
-![BluetoothSerial Library](image/myoware_LeCyborg.jpg)
+<p align="left">
+  <img src="image/myoware_LeCyborg.jpg" alt="Watch the demo video" width="68%"/>
+  <img src="image/components.jpg" alt="LeCyborg team" width="25%"/>
+</p>
 
 ### ESP32 Flashing
 With your ESP32, use the `LeCyborg-esp32.ino` code placed in the **esp32/** folder.
