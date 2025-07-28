@@ -1,0 +1,47 @@
+M48
+; DRILL file {Flux 9.0.1-9.0.1-0~ubuntu22.04.1} date 2025-07-26T15:57:43+0000
+; FORMAT={-:-/ absolute / metric / decimal}
+; #@! TF.CreationDate,2025-07-26T15:57:43+00:00
+; #@! TF.GenerationSoftware,Kicad,Pcbnew,9.0.1-9.0.1-0~ubuntu22.04.1
+; #@! TF.FileFunction,MixedPlating,1,2
+FMAT,2
+METRIC
+; #@! TA.AperFunction,Plated,PTH,ComponentDrill
+T1C1.000
+; #@! TA.AperFunction,Plated,PTH,ComponentDrill
+T2C1.100
+; #@! TA.AperFunction,NonPlated,NPTH,ComponentDrill
+T3C3.500
+%
+G90
+G05
+T1
+X-2.54Y24.749
+X-0.0Y24.749
+X2.54Y24.749
+X9.817Y16.537
+X9.817Y13.997
+X9.817Y11.457
+T2
+X-9.161Y19.077
+X-9.161Y13.997
+X-6.186Y0.505
+X-6.186Y-2.035
+X-6.186Y-4.575
+X-6.186Y-7.115
+X-6.186Y-9.655
+X-6.186Y-12.195
+X-6.186Y-14.735
+X5.412Y-7.41
+X5.412Y-9.655
+X9.054Y0.505
+X9.054Y-2.035
+X9.054Y-4.575
+X9.054Y-7.115
+X9.054Y-9.655
+X9.054Y-12.195
+X9.054Y-14.735
+T3
+X-6.0Y-22.0
+X6.0Y22.0
+M30

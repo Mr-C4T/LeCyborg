@@ -1,0 +1,16 @@
+%TF.GenerationSoftware,Flux,Pcbnew,9.0.1-9.0.1-0~ubuntu22.04.1*%
+%TF.CreationDate,2025-07-26T15:57:37+00:00*%
+%TF.ProjectId,input,696e7075-742e-46b6-9963-61645f706362,rev?*%
+%TF.SameCoordinates,Original*%
+%TF.FileFunction,Paste,Bot*%
+%TF.FilePolarity,Positive*%
+%FSLAX46Y46*%
+G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
+G04 Filename: myoesp32*
+G04 Build it with Flux! Visit our site at: https://www.flux.ai (PCBNEW 9.0.1-9.0.1-0~ubuntu22.04.1) date 2025-07-26 15:57:37*
+%MOMM*%
+%LPD*%
+G01*
+G04 APERTURE LIST*
+G04 APERTURE END LIST*
+M02*
