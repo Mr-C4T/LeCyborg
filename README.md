@@ -15,7 +15,7 @@ We created a custom dataset using a wearable SO100 arm attached to a backpack, e
 
 Our objective was to create the world's first — to the best of our knowledge — LeRobot Cyborg 🦾 dataset and AI policy to control a third arm.
 
-### 🎥 <a href="https://www.youtube.com/watch?v=QdlEGFZBbcE">Watch the demo video</a> 🎥 
+### 🎥 <a href="https://youtu.be/OB96s5SZWGA">Watch the demo video</a> 🎥 
 
 # Requirements
 LeCyborg is working on top of lerobot (https://github.com/huggingface/lerobot), thus, you need it installed properly in a proper environment (the best would be to be familiar with the full lerobot dataset record and training process).
