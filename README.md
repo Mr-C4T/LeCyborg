@@ -48,8 +48,9 @@ You can build the LeCyborg EMG sensor in two different ways depending on your to
 
 - Powered via a small 1 S LiPo
 
-- Ideal if you want to quickly test the system
+- Ideal if you want to quickly test the system (This is what we used for the hackathon)
 
+You can find the stl file for the case in the stl/ folder: https://github.com/Mr-C4T/LeCyborg/tree/main/stl/myoEsp32.stl
 
 ### 2. Custom PCB + ESP32-C3 XIAO
 
@@ -68,12 +69,12 @@ You can build the LeCyborg EMG sensor in two different ways depending on your to
 
 - Powered via a small 1 S LiPo
 
-The PCB was kindly sponsored by PCBWay
-They manufactured the boards with great quality and fast shipping — highly recommended if you want to reproduce this setup!
-You can find the Gerber files in the pcb/ folder of this repo.
-If you’d like to order the board directly, you can upload the Gerbers to PCBWay.
+The PCB was kindly sponsored by **PCBWay**
+They manufactured the boards with great quality and fast shipping — highly recommended if you want to reproduce this setup or order custom PCBs and parts for your project !
 
-https://pcbway.com/g/jT8zNZ
+You can find the Gerber files in the pcb/ folder: https://github.com/Mr-C4T/LeCyborg/tree/main/pcb
+
+If you’d like to order the board directly, you can upload the Gerbers to PCBWay: https://pcbway.com/g/jT8zNZ
 
 ### ESP32 Flashing
 With your ESP32, use the `LeCyborg-esp32.ino` code placed in the **esp32/** folder.
