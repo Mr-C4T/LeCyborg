@@ -29,11 +29,48 @@ cd LeCyborg
 ```
 Make sure your lerobot environment is activated.
 
-## Sensor usage
+## EMG Sensor
+
+You can build the LeCyborg EMG sensor in two different ways depending on your tools and needs:
+
+### 1. 3D-Printed Case + ESP32 DevKit
+   
 <p align="left">
-  <img src="image/myoware_LeCyborg.jpg" alt="Watch the demo video" width="68%"/>
+  <img src="image/myoware_LeCyborg.jpg" width="68%"/>
   <img src="image/components.jpg" alt="LeCyborg team" width="25%"/>
 </p>
+
+- Simple and fast prototype
+
+- Uses ESP32 DOIT DevKit
+
+- Housed in a 3D-printed case
+
+- Powered via a small 1 S LiPo
+
+- Ideal if you want to quickly test the system
+
+
+### 2. Custom PCB + ESP32-C3 XIAO
+
+<p align="center"> <img src="image/lecyborg_pcb.jpg" alt="LeCyborg custom PCB" width="65%"/> </p>
+
+- Compact, professional design
+
+- Based on the ESP32-C3 XIAO (also compatible with XIAO-S3)
+
+- Direct connector for MyoWare EMG sensor
+
+- Wireless transmission with ESP-NOW (or bluetooth serial if you use XIAO-S3)
+
+- Powered via a small 1 S LiPo
+
+The PCB was kindly sponsored by PCBWay
+They manufactured the boards with great quality and fast shipping — highly recommended if you want to reproduce this setup!
+You can find the Gerber files in the pcb/ folder of this repo.
+If you’d like to order the board directly, you can upload the Gerbers to PCBWay.
+
+https://pcbway.com/g/jT8zNZ
 
 ### ESP32 Flashing
 With your ESP32, use the `LeCyborg-esp32.ino` code placed in the **esp32/** folder.
