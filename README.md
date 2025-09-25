@@ -54,7 +54,7 @@ You can build the LeCyborg EMG sensor in two different ways depending on your to
 ### 2. Custom PCB + ESP32-C3 XIAO
 
 <p align="left">
-  <img src="image/pcb_lecyborg.jpg" width="49%"/>
+  <img src="image/pcb_lecyborg.png" width="49%"/>
   <img src="image/pcb_myoware.jpg" alt="LeCyborg team" width="49%"/>
 </p>
 
